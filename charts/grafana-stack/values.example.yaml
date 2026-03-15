@@ -1,0 +1,85 @@
+global:
+  clusterName: prod-cluster
+
+# ---------------------------------------------------------------------------
+# Grafana
+# ---------------------------------------------------------------------------
+grafana:
+  enabled: true
+
+# ---------------------------------------------------------------------------
+# Loki – requires object-storage bucket names (SimpleScalable default mode)
+# ---------------------------------------------------------------------------
+loki:
+  enabled: true
+  loki:
+    storage:
+      # -- "s3" | "gcs" | "azure" | "filesystem"
+      type: s3
+      bucketNames:
+        chunks: loki-chunks
+        ruler: loki-ruler
+        admin: loki-admin
+      s3:
+        # -- S3-compatible endpoint (leave empty for AWS S3)
+        endpoint: minio.minio.svc.cluster.local:9000
+        region: us-east-1
+        accessKeyId: CHANGEME
+        secretAccessKey: CHANGEME
+        insecure: true
+        s3ForcePathStyle: true
+
+# ---------------------------------------------------------------------------
+# Tempo (distributed) – requires a trace-storage backend
+# ---------------------------------------------------------------------------
+tempo:
+  enabled: true
+  storage:
+    trace:
+      backend: s3
+      s3:
+        bucket: tempo-traces
+        endpoint: minio.minio.svc.cluster.local:9000
+        region: us-east-1
+        access_key: CHANGEME
+        secret_key: CHANGEME
+        insecure: true
+
+# ---------------------------------------------------------------------------
+# Mimir (distributed) – requires block / alert / ruler storage
+# ---------------------------------------------------------------------------
+mimir:
+  enabled: true
+  mimir:
+    structuredConfig:
+      common:
+        storage:
+          backend: s3
+          s3:
+            bucket_name: mimir-blocks
+            endpoint: minio.minio.svc.cluster.local:9000
+            region: us-east-1
+            access_key_id: CHANGEME
+            secret_access_key: CHANGEME
+            insecure: true
+      blocks_storage:
+        s3:
+          bucket_name: mimir-blocks
+      alertmanager_storage:
+        s3:
+          bucket_name: mimir-alertmanager
+      ruler_storage:
+        s3:
+          bucket_name: mimir-ruler
+
+# ---------------------------------------------------------------------------
+# Grafana Alloy
+# ---------------------------------------------------------------------------
+alloy:
+  enabled: true
+
+# ---------------------------------------------------------------------------
+# Beyla (optional)
+# ---------------------------------------------------------------------------
+beyla:
+  enabled: false

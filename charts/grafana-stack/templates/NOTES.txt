@@ -1,0 +1,42 @@
+Thank you for installing {{ .Chart.Name }} v{{ .Chart.Version }}!
+
+Release name : {{ .Release.Name }}
+Namespace    : {{ .Release.Namespace }}
+
+Enabled components:
+{{- if .Values.grafana.enabled }}
+  ✓ Grafana        (dashboards & UI)
+{{- end }}
+{{- if .Values.loki.enabled }}
+  ✓ Loki           (log storage)
+{{- end }}
+{{- if .Values.tempo.enabled }}
+  ✓ Tempo          (distributed trace storage)
+{{- end }}
+{{- if .Values.mimir.enabled }}
+  ✓ Mimir          (distributed metrics storage)
+{{- end }}
+{{- if .Values.alloy.enabled }}
+  ✓ Grafana Alloy  (collector / agent)
+{{- end }}
+{{- if .Values.beyla.enabled }}
+  ✓ Beyla          (eBPF auto-instrumentation)
+{{- end }}
+
+---------------------------------------------------------------------------
+Get the Grafana admin password:
+
+  kubectl get secret --namespace {{ .Release.Namespace }} \
+    {{ .Release.Name }}-grafana \
+    -o jsonpath="{.data.admin-password}" | base64 --decode; echo
+
+Forward the Grafana UI to your local machine:
+
+  kubectl port-forward --namespace {{ .Release.Namespace }} \
+    svc/{{ .Release.Name }}-grafana 3000:80
+
+Then open http://localhost:3000 in your browser.
+---------------------------------------------------------------------------
+
+For full documentation visit:
+  https://github.com/ChiliChonka/grafana-stack-helm-chart

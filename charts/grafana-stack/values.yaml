@@ -1,0 +1,51 @@
+# -- Global settings shared across all subcharts.
+global:
+  # -- A human-readable name for the cluster, used as a label in dashboards.
+  clusterName: home-cluster
+
+# ---------------------------------------------------------------------------
+# Grafana – dashboards, alerting UI and data-source management
+# ---------------------------------------------------------------------------
+grafana:
+  # -- Set to false to disable Grafana entirely.
+  enabled: true
+
+# ---------------------------------------------------------------------------
+# Loki – log aggregation and storage
+# ---------------------------------------------------------------------------
+loki:
+  # -- Set to false to disable Loki entirely.
+  enabled: true
+
+# ---------------------------------------------------------------------------
+# Tempo (alias: tempo-distributed) – distributed trace storage
+# ---------------------------------------------------------------------------
+tempo:
+  # -- Set to false to disable Tempo entirely.
+  enabled: true
+
+# ---------------------------------------------------------------------------
+# Mimir (alias: mimir-distributed) – long-term metrics storage
+# ---------------------------------------------------------------------------
+mimir:
+  # -- Set to false to disable Mimir entirely.
+  enabled: true
+
+# ---------------------------------------------------------------------------
+# Grafana Alloy – collector / agent (replaces Grafana Agent)
+# ---------------------------------------------------------------------------
+alloy:
+  # -- Set to false to disable Alloy entirely.
+  enabled: true
+  controller:
+    # -- Deployment type: "deployment" | "daemonset" | "statefulset"
+    type: deployment
+    # -- Number of Alloy replicas when type is "deployment".
+    replicas: 2
+
+# ---------------------------------------------------------------------------
+# Beyla – eBPF-based auto-instrumentation (optional)
+# ---------------------------------------------------------------------------
+beyla:
+  # -- Set to true to enable Beyla (requires Linux kernel >= 5.8 with eBPF).
+  enabled: false

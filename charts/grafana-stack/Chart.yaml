@@ -1,0 +1,64 @@
+apiVersion: v2
+name: grafana-stack
+description: >-
+  Helm umbrella chart for a Grafana LGTM observability stack on Kubernetes.
+  Deploys Grafana, Loki, Tempo (distributed), Mimir (distributed) and Alloy
+  without requiring the Prometheus Operator or ServiceMonitor CRDs.
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+home: https://github.com/ChiliChonka/grafana-stack-helm-chart
+sources:
+  - https://github.com/ChiliChonka/grafana-stack-helm-chart
+keywords:
+  - grafana
+  - loki
+  - tempo
+  - mimir
+  - alloy
+  - observability
+  - lgtm
+  - monitoring
+  - logging
+  - tracing
+  - metrics
+maintainers:
+  - name: ChiliChonka
+    url: https://github.com/ChiliChonka
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial release of the grafana-stack umbrella chart
+
+dependencies:
+  - name: grafana
+    repository: https://grafana.github.io/helm-charts
+    version: "10.5.15"
+    condition: grafana.enabled
+
+  - name: loki
+    repository: https://grafana.github.io/helm-charts
+    version: "6.55.0"
+    condition: loki.enabled
+
+  - name: tempo-distributed
+    repository: https://grafana.github.io/helm-charts
+    version: "1.61.3"
+    alias: tempo
+    condition: tempo.enabled
+
+  - name: mimir-distributed
+    repository: https://grafana.github.io/helm-charts
+    version: "6.0.5"
+    alias: mimir
+    condition: mimir.enabled
+
+  - name: alloy
+    repository: https://grafana.github.io/helm-charts
+    version: "1.6.2"
+    condition: alloy.enabled
+
+  - name: beyla
+    repository: https://grafana.github.io/helm-charts
+    version: "1.13.0"
+    condition: beyla.enabled

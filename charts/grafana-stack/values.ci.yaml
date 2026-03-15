@@ -1,0 +1,47 @@
+# CI-only values – NOT for production use.
+# Uses filesystem / local storage to bypass all object-storage required-checks.
+
+global:
+  clusterName: ci-cluster
+
+grafana:
+  enabled: true
+
+# Loki: SingleBinary + filesystem avoids the write/read/backend statefulsets
+# and their required "Please define loki.storage.bucketNames.*" checks.
+loki:
+  enabled: true
+  deploymentMode: SingleBinary
+  loki:
+    commonConfig:
+      replication_factor: 1
+    storage:
+      type: filesystem
+    # useTestSchema skips the validate.yaml schema_config requirement
+    useTestSchema: true
+  singleBinary:
+    replicas: 1
+  # Ensure scalable components are not rendered
+  read:
+    replicas: 0
+  write:
+    replicas: 0
+  backend:
+    replicas: 0
+
+# Tempo: default backend is already "local", no object-storage required.
+tempo:
+  enabled: true
+
+# Mimir: disable to avoid complex distributed storage requirements in CI.
+mimir:
+  enabled: false
+
+alloy:
+  enabled: true
+  controller:
+    type: deployment
+    replicas: 1
+
+beyla:
+  enabled: false
