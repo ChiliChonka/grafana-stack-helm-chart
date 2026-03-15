@@ -42,9 +42,9 @@ helm install grafana-stack \
 git clone https://github.com/ChiliChonka/grafana-stack-helm-chart.git
 cd grafana-stack-helm-chart
 
-helm dependency update charts/grafana-stack
+helm dependency update grafana-stack
 
-helm upgrade --install grafana-stack charts/grafana-stack \
+helm upgrade --install grafana-stack grafana-stack \
   -n observability \
   --create-namespace
 ```

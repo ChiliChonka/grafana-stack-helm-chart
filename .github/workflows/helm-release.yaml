@@ -32,7 +32,7 @@ jobs:
 
       - name: Package chart
         run: |
-          helm package grafana-stack
+          helm package charts/grafana-stack
 
       - name:  Log in to GHCR
         env:

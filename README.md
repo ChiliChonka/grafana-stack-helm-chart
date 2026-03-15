@@ -48,9 +48,9 @@ helm install grafana-stack \
 git clone https://github.com/ChiliChonka/grafana-stack-helm-chart.git
 cd grafana-stack-helm-chart
 
-helm dependency update charts/grafana-stack
+helm dependency update grafana-stack
 
-helm upgrade --install grafana-stack charts/grafana-stack \
+helm upgrade --install grafana-stack grafana-stack \
   -n observability \
   --create-namespace
 ```
@@ -59,19 +59,19 @@ helm upgrade --install grafana-stack charts/grafana-stack \
 
 ## Configuration
 
-Copy `charts/grafana-stack/values.example.yaml` as a starting point:
+Copy `grafana-stack/values.example.yaml` as a starting point:
 
 ```bash
-cp charts/grafana-stack/values.example.yaml my-values.yaml
+cp grafana-stack/values.example.yaml my-values.yaml
 # edit my-values.yaml …
 
-helm upgrade --install grafana-stack charts/grafana-stack \
+helm upgrade --install grafana-stack grafana-stack \
   -n observability \
   --create-namespace \
   --values my-values.yaml
 ```
 
-See [`charts/grafana-stack/README.md`](charts/grafana-stack/README.md) for the full parameter reference.
+See [`grafana-stack/README.md`](grafana-stack/README.md) for the full parameter reference.
 
 ---
 
@@ -79,15 +79,14 @@ See [`charts/grafana-stack/README.md`](charts/grafana-stack/README.md) for the f
 
 ```
 .
-├── charts/
-│   └── grafana-stack/
-│       ├── Chart.yaml
-│       ├── values.yaml          # default values (documented)
-│       ├── values.example.yaml  # example / quickstart values
-│       ├── .helmignore
-│       └── templates/
-│           ├── _helpers.tpl
-│           └── NOTES.txt
+├── grafana-stack/
+│   ├── Chart.yaml
+│   ├── values.yaml          # default values (documented)
+│   ├── values.example.yaml  # example / quickstart values
+│   ├── .helmignore
+│   └── templates/
+│       ├── _helpers.tpl
+│       └── NOTES.txt
 ├── .github/
 │   └── workflows/
 │       ├── helm-lint.yaml       # lint + render on every PR / push
@@ -100,7 +99,7 @@ See [`charts/grafana-stack/README.md`](charts/grafana-stack/README.md) for the f
 
 ## Releasing a New Version
 
-1. Update `version` in `charts/grafana-stack/Chart.yaml`.
+1. Update `version` in `grafana-stack/Chart.yaml`.
 2. Commit and push the change.
 3. Create a git tag matching `v*` (e.g. `v0.2.0`):
 
@@ -121,9 +120,9 @@ oci://ghcr.io/chiliChonka/charts/grafana-stack
 
 Pull requests are welcome. Please ensure:
 
-- `helm lint charts/grafana-stack` passes locally
-- `helm dependency update charts/grafana-stack` has been run if you changed `Chart.yaml`
-- Changes are documented in `charts/grafana-stack/README.md`
+- `helm lint grafana-stack` passes locally
+- `helm dependency update grafana-stack` has been run if you changed `Chart.yaml`
+- Changes are documented in `grafana-stack/README.md`
 
 ---
 

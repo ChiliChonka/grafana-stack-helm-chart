@@ -3,5 +3,5 @@
 *.swo
 .idea/
 .vscode/
-charts/*/charts/
-charts/*/Chart.lock
+*/charts/
+*/Chart.lock

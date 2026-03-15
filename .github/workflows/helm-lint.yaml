@@ -21,17 +21,17 @@ jobs:
         run: helm repo add grafana https://grafana.github.io/helm-charts
 
       - name: Update chart dependencies
-        run: helm dependency update charts/grafana-stack
+        run: helm dependency update grafana-stack
 
       - name: Lint chart (CI values)
         run: |
-          helm lint charts/grafana-stack \
+          helm lint grafana-stack \
             --strict \
-            --values charts/grafana-stack/values.ci.yaml
+            --values grafana-stack/values.ci.yaml
 
       - name: Render templates (CI values)
         run: |
-          helm template grafana-stack charts/grafana-stack \
+          helm template grafana-stack grafana-stack \
             --namespace observability \
-            --values charts/grafana-stack/values.ci.yaml \
+            --values grafana-stack/values.ci.yaml \
             > /tmp/rendered.yaml
