@@ -30,7 +30,7 @@
 
 ```bash
 helm install grafana-stack \
-  oci://ghcr.io/chiliChonka/helm-charts/grafana-stack \
+  oci://ghcr.io/chiliChonka/charts/grafana-stack \
   --version 0.1.0 \
   -n observability \
   --create-namespace
@@ -53,7 +53,7 @@ helm upgrade --install grafana-stack charts/grafana-stack \
 
 ```bash
 helm upgrade --install grafana-stack \
-  oci://ghcr.io/chiliChonka/helm-charts/grafana-stack \
+  oci://ghcr.io/chiliChonka/charts/grafana-stack \
   --version 0.1.0 \
   -n observability \
   --create-namespace \

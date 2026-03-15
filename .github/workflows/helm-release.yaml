@@ -50,7 +50,7 @@ jobs:
         run: |
           helm push \
             /tmp/helm-packages/grafana-stack-${{ steps.version.outputs.version }}.tgz \
-            oci://ghcr.io/${{ github.repository_owner }}/helm-charts
+            oci://ghcr.io/${{ github.repository_owner }}/charts
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -62,7 +62,7 @@ jobs:
 
             ```bash
             helm install grafana-stack \
-              oci://ghcr.io/${{ github.repository_owner }}/helm-charts/grafana-stack \
+              oci://ghcr.io/${{ github.repository_owner }}/charts/grafana-stack \
               --version ${{ steps.version.outputs.version }} \
               -n observability \
               --create-namespace
