@@ -30,23 +30,17 @@ jobs:
       - name: Lint chart before release
         run: helm lint charts/grafana-stack --strict
 
-      - name: Extract version from tag
-        id: version
-        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
-
-      - name: Log in to GitHub Container Registry
-        env:
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "${GITHUB_TOKEN}" | helm registry login ghcr.io \
-            --username "${{ github.actor }}" \
-            --password-stdin
-
       - name: Package chart
         run: |
           helm package grafana-stack
 
-      - name: Push chart to OCI registry
+      - name:  Log in to GHCR
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "${GHCR_TOKEN}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
+
+      - name: Push chart
         run: |
           OWNER_LC="$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')"
-          helm push grafana-stack-*.tgz oci://ghcr.io/${OWNER_LC}/charts
+          helm push grafana-stack-*.tgz "oci://ghcr.io/${OWNER_LC}/charts"
