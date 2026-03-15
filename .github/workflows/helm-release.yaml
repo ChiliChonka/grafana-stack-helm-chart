@@ -25,14 +25,14 @@ jobs:
         run: helm repo add grafana https://grafana.github.io/helm-charts
 
       - name: Update chart dependencies
-        run: helm dependency update charts/grafana-stack
+        run: helm dependency update grafana-stack
 
       - name: Lint chart before release
-        run: helm lint charts/grafana-stack --strict
+        run: helm lint grafana-stack --strict
 
       - name: Package chart
         run: |
-          helm package charts/grafana-stack
+          helm package grafana-stack
 
       - name:  Log in to GHCR
         env:
