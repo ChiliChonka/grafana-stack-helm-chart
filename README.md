@@ -36,7 +36,7 @@ Deploys a full LGTM-style stack using official Grafana Helm charts:
 
 ```bash
 helm install grafana-stack \
-  oci://ghcr.io/chiliChonka/charts/grafana-stack \
+  oci://ghcr.io/chilichonka/charts/grafana-stack \
   --version 0.1.0 \
   -n observability \
   --create-namespace
