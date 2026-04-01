@@ -111,7 +111,7 @@ See [`grafana-stack/README.md`](grafana-stack/README.md) for the full parameter 
 The [helm-release workflow](.github/workflows/helm-release.yaml) will automatically package the chart and push it to the GitHub Container Registry:
 
 ```
-oci://ghcr.io/chiliChonka/charts/grafana-stack
+oci://ghcr.io/chilichonka/charts/grafana-stack
 ```
 
 ---
