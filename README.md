@@ -129,3 +129,12 @@ Pull requests are welcome. Please ensure:
 ## License
 
 [MIT](LICENSE)
+
+## Credential-Bereinigung (TASK-367)
+
+Dieser Stack ist im Produktionscluster nicht installiert. Die archivierten
+`grafana-stack-{loki,mimir,tempo}-values.yaml` sind keine produktiven Werte.
+Ihre eingebetteten MinIO-Standardpasswörter wurden geleert; vor einer erneuten
+Installation externe Secrets mit der verwendeten Chart-Version verdrahten.
+Die Dateien bleiben im ursprünglichen UTF-16-Format. Keine Zugangsdaten ergänzen.
+`task check` entspricht den bestehenden Lint-/Render-Schritten der CI.
