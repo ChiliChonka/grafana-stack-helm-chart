@@ -1,0 +1,7 @@
+version: '3'
+tasks:
+  check:
+    cmds:
+      - helm dependency update grafana-stack
+      - helm lint grafana-stack --strict -f grafana-stack/values.ci.yaml
+      - helm template grafana-stack grafana-stack -n observability -f grafana-stack/values.ci.yaml > /dev/null
