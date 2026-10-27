@@ -4,6 +4,12 @@
 [![Release](https://github.com/ChiliChonka/grafana-stack-helm-chart/actions/workflows/helm-release.yaml/badge.svg)](https://github.com/ChiliChonka/grafana-stack-helm-chart/actions/workflows/helm-release.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+> **Unmaintained since 2026-10-27, archived.** Not maintained, see `helm-values/monitoring`
+> (private deployment repo): the stack now runs as separate Helm releases from the upstream
+> charts (Grafana, Loki, Tempo from `grafana-community/helm-charts`, Alloy from
+> `grafana/helm-charts`, Prometheus from `prometheus-community`). The component versions below
+> are outdated; use the upstream charts directly.
+
 Helm umbrella chart for a **Grafana LGTM observability stack on Kubernetes**.
 
 Deploys a full LGTM-style stack using official Grafana Helm charts:
